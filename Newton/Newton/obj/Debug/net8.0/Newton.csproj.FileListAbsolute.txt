@@ -1,0 +1,8 @@
+C:\Users\HP\Documents\csharp_codes\Projects\Newton\Newton\bin\Debug\net8.0\Newton.exe
+C:\Users\HP\Documents\csharp_codes\Projects\Newton\Newton\obj\Debug\net8.0\Newton.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\Documents\csharp_codes\Projects\Newton\Newton\obj\Debug\net8.0\Newton.AssemblyInfoInputs.cache
+C:\Users\HP\Documents\csharp_codes\Projects\Newton\Newton\obj\Debug\net8.0\Newton.AssemblyInfo.cs
+C:\Users\HP\Documents\csharp_codes\Projects\Newton\Newton\obj\Debug\net8.0\Newton.csproj.CoreCompileInputs.cache
+C:\Users\HP\Documents\csharp_codes\Projects\Newton\Newton\obj\Debug\net8.0\Newton.dll
+C:\Users\HP\Documents\csharp_codes\Projects\Newton\Newton\obj\Debug\net8.0\refint\Newton.dll
+C:\Users\HP\Documents\csharp_codes\Projects\Newton\Newton\obj\Debug\net8.0\Newton.pdb

@@ -1,0 +1,8 @@
+C:\Users\HP\Documents\csharp_codes\Projects\NewtonRaphson\bin\Debug\net8.0\NewtonRaphsonMain.exe
+C:\Users\HP\Documents\csharp_codes\Projects\NewtonRaphson\obj\Debug\net8.0\NewtonRaphsonMain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\Documents\csharp_codes\Projects\NewtonRaphson\obj\Debug\net8.0\NewtonRaphsonMain.AssemblyInfoInputs.cache
+C:\Users\HP\Documents\csharp_codes\Projects\NewtonRaphson\obj\Debug\net8.0\NewtonRaphsonMain.AssemblyInfo.cs
+C:\Users\HP\Documents\csharp_codes\Projects\NewtonRaphson\obj\Debug\net8.0\NewtonRaphsonMain.csproj.CoreCompileInputs.cache
+C:\Users\HP\Documents\csharp_codes\Projects\NewtonRaphson\obj\Debug\net8.0\NewtonRaphsonMain.dll
+C:\Users\HP\Documents\csharp_codes\Projects\NewtonRaphson\obj\Debug\net8.0\refint\NewtonRaphsonMain.dll
+C:\Users\HP\Documents\csharp_codes\Projects\NewtonRaphson\obj\Debug\net8.0\NewtonRaphsonMain.pdb
