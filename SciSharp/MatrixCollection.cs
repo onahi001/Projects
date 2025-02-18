@@ -215,11 +215,30 @@ namespace MatrixCollection
             return "";
         }
 
+        
+        /// <summary>
+        ///  This method takes the dot product between this matrix
+        /// and another matrix passed as parameter
+        /// Ensure the number of columns of the first matrix equals
+        /// the number of rows of the second matrix
+        /// </summary>
+        /// <param name="matrix2">
+        /// This is a matrix of type Matrix<double>
+        /// </param>
+        /// <returns>returns a Matrix type</returns>
+        /// /// <example>
+        /// Example of taking the dot product of two matrices:
+        /// <code>
+        /// Matrix<double> firstMatrix = new Matrix<double>(4,4);
+        /// Matrix<double> secondMatrix = new Matrix<double>(4,4);
+        /// Matrix<double> resultMatrix = firstMatrix.DotProduct(secondMatrix);
+        /// </code>
+        /// </example>
         public Matrix<double> DotProduct(Matrix<double> matrix2)
         {
             if (NOcolumns != matrix2.GetRow())
                 throw new ArgumentException (
-                    "Row of first must equal col of");
+                    "Row of first must equal col of second");
             
             Matrix<double> result = new Matrix<double>();
             int matrix2Row = matrix2.GetRow();
@@ -241,11 +260,29 @@ namespace MatrixCollection
             return result;
         }
 
+        /// <summary>
+        ///  This method takes the dot product between this matrix
+        /// and a vector passed as parameter
+        /// Ensure that the number of columns equals the number
+        /// of elements in the vector.
+        /// </summary>
+        /// <param name="matrix1D">
+        /// This is a vector of type List<double>
+        /// </param>
+        /// <returns>a List<double> type</returns>
+        /// /// <example>
+        /// Example of taking the dot product between a matrix and list:
+        /// <code>
+        /// Matrix<double> firstMatrix = new Matrix<double>(4,4);
+        /// Matrix<double> vector = new List<double>{1,2,3};
+        /// Matrix<double> resultMatrix = firstMatrix.DotProduct(vector);
+        /// </code>
+        /// </example>
         public List<double> DotProduct1D(List<double> matrix1D)
         {
             if (NOcolumns != matrix1D.Count())
                 throw new ArgumentException (
-                    "Row of first must equal col of");
+                    "Row of first matrix must equal number of elements of the List");
             
             List<double> result = new List<double>();
             int matrix1DRow = matrix1D.Count();
@@ -263,6 +300,23 @@ namespace MatrixCollection
             return result;
         }
 
+        
+        /// <summary>
+        /// This is a method that slices through a 
+        /// matrix column wise
+        /// </summary>
+        /// <param name="column">The index of the column</param>
+        /// <param name="start">the index for start of the slicing</param>
+        /// <param name="end">the index for end of the slicing</param>
+        /// <returns>a list of values</returns>
+        /// /// /// <example>
+        /// Example of column slicing a matrix:
+        /// <code>
+        /// Matrix<double> firstMatrix = new Matrix<double>(4,4);
+        /// Matrix<double> vector = new List<double>{1,2,3};
+        /// Matrix<double> resultMatrix = firstMatrix.DotProduct(vector);
+        /// </code>
+        /// </example>
         public List<T> columnSlice(int column, int start, int end)
         {
             

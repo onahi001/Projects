@@ -172,6 +172,19 @@ namespace MatrixCollection
             return result;
         }
 
+        /// <summary>
+        /// Method to print the elements of a List type
+        /// to a console
+        /// </summary>
+        /// <param name = "matrix1D">
+        /// a vector represented by a List type
+        /// </param>
+        /// <example>
+        /// <code>
+        /// List<int> test = new List<int>{1,2,3,4};
+        /// PrintList(test);
+        /// </code>
+        /// </example>
         public static void PrintList<T>(List<T> matrix1D)where T:
              struct, IComparable, IComparable<T>, IEquatable<T>
         {

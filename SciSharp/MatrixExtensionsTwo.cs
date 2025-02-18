@@ -5,8 +5,23 @@ using MatrixCollection;
 
 namespace MatrixCollection
 {
+    /// <summary>
+    /// A class with methods to carryout LU
+    /// Decomposition operations
+    /// </summary>
     public static class MatrixExtensionsTwo
     {
+        /// <summary>
+        /// decomposes a matrix into L, U and P
+        /// where P is the pivoting factor.
+        /// </summary>
+        /// <param name="augEqn">
+        /// a matrix of equation
+        /// </param>
+        /// <returns>
+        /// a tuple containing 3 matrices of type Matrix<double>
+        /// it returns in the order L, U and P 
+        /// </returns>
         public static (Matrix<double>L, Matrix<double>U, Matrix<double>P) LUCroutDecomposition (
             Matrix<double> augEqn)
         {
@@ -84,6 +99,21 @@ namespace MatrixCollection
         }
         
         // carrying forward substitution on the matrix
+        /// <summary>
+        ///  Carries out forward substitution on the L matrix
+        /// </summary>
+        /// <param name="L">
+        /// a decomposed L matrix of type Matrix<double>
+        /// </param>
+        /// <param name="P">
+        /// the pivoting P factor matrix of type Matrix<double>
+        /// </param>
+        /// <param name="constant">
+        /// the constants of the equation of type List<double>
+        /// </param>
+        /// <returns>
+        /// a List of solutions of type List<double>
+        /// </returns>
         public static List<double> forwardSub(
             Matrix<double> L, Matrix<double> P, List<double> constant)
         {
@@ -105,7 +135,19 @@ namespace MatrixCollection
             return result;
         }
 
-        // carrying out backward substitution on the matrix
+        /// <summary>
+        ///  carrying out backward substitution on the matrix
+        /// </summary>
+        /// <param name="U">
+        /// a decomposed U matrix of type Matrix<double>
+        /// </param>
+        /// <param name="LSubstituted">
+        /// the solution from backward substitution into L Matrix
+        /// of type List<double>
+        /// </param>
+        /// <returns>
+        /// a List of solutions for equatin of type List<double>
+        /// </returns>
         public static List<double> backwardSub(
             Matrix<double>U, List<double>LSubstituted)
         {
@@ -125,7 +167,23 @@ namespace MatrixCollection
             return solution.ToList();
         }
 
-        // Finding the inverse of a Matrix using LU Decomposition
+        /// <summary>
+        ///  Finding the inverse of a Matrix using LU Decomposition
+        /// Method. The matrix must be a square matrix
+        /// </summary>
+        /// <param name="eqnmatrix">a matrix of type Matrix<double></param>
+        /// <returns>
+        /// an inverse matrix of type Matrix<double>
+        /// </returns>
+        /// <example>
+        /// inverse of 1 2
+        ///            3 4
+        /// <code>
+        /// Matrix<double> equation = new Matrix<double>();
+        /// equation.AddRow(new List<double>{1, 2});
+        /// equation.AddRow(new List<double>{3, 4});
+        /// 
+        /// Matrix<double> inverseMatrix =LUMatrixInv(equation);
         public static Matrix<double> LUMatrixInv(Matrix<double> eqnMatrix)
         {
             int NOrows = eqnMatrix.GetRow();

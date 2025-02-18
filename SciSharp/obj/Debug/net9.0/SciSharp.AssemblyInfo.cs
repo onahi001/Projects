@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SciSharp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7d0c2f535fdb9ff8345b175dbfb0a80a5bd6c7b0")]
 [assembly: System.Reflection.AssemblyProductAttribute("SciSharp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SciSharp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -12,3 +12,4 @@ C:\Users\HP\Documents\csharp_codes\Projects\SciSharp\obj\Debug\net9.0\refint\Sci
 C:\Users\HP\Documents\csharp_codes\Projects\SciSharp\obj\Debug\net9.0\SciSharp.pdb
 C:\Users\HP\Documents\csharp_codes\Projects\SciSharp\obj\Debug\net9.0\SciSharp.genruntimeconfig.cache
 C:\Users\HP\Documents\csharp_codes\Projects\SciSharp\obj\Debug\net9.0\ref\SciSharp.dll
+C:\Users\HP\Documents\csharp_codes\Projects\SciSharp\obj\Debug\net9.0\SciSharp.sourcelink.json

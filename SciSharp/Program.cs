@@ -32,14 +32,16 @@ public class Program
 
        // Carrying out Newton Raphson using Gauss Jordan Method
        SystemsOfEqn.NewtonRaphsonGauss(startValues2, equations2, 1e-6, 100);
-       Console.WriteLine("LU ");
        Console.WriteLine();
+       Console.WriteLine("LU Crout Decomposition Method ");
        SystemsOfEqn.NewtonRaphsonGauss(startValues2, equations2, 1e-6, 100);
-
-       Example();
-       
     }
 
+    
+    
+    
+    
+    
     public static void Example()
     {
         (double V, double Cao, double vo, double To) = (100, 5, 10, 300);

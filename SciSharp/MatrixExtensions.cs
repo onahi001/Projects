@@ -11,16 +11,13 @@ namespace MatrixCollection
         /// Perform Gauss-Jordan elimination on
         /// matrices.
         /// </summary>
-        /// <typeparam name="T">
-        /// A numeric data type
-        /// </typeparam>
         /// <param name="matrix">
         /// An input array of class Matrix<T>
         /// which represents the variables of 
         /// simultaneous equations.
         /// </param>
-        /// <param name="constant">
-        /// An input List of class List<T>
+        /// <param name="imatrix">
+        /// An input 1D array of class Matrix<double>
         /// which represents the constants of
         /// simultaneous equations.
         /// </param>
@@ -28,7 +25,18 @@ namespace MatrixCollection
         /// A new matrix of class Matric<double>
         /// </returns>
         /// <example>
+        /// finding the solution of a simultaneous equation
+        /// x + y = 5
+        /// 2x + y = 6
         /// <code>
+        /// Matrix<double> equation = new Matrix<double>();
+        /// equation.AddRow(new List<double>{1, 1});
+        /// equation.AddRow(new List<double>{2, 1});
+        /// 
+        /// Matrix<double> constantValues = new Matrix<double>();
+        /// constantValues.AddRow(new List<double>{5, 6});
+        /// 
+        /// List<double> solution = GaussJordanElimination(equation, constantValues);
         /// </code>
         /// </example>
         public static Matrix<double> GaussJordanMatrix(
@@ -80,9 +88,39 @@ namespace MatrixCollection
             return augEqn;
         }
 
+        
+        /// <summary>
+        /// Perform Gauss-Jordan elimination on
+        /// matrices.
+        /// </summary>
+        /// <param name="matrix">
+        /// An input array of class Matrix<T>
+        /// which represents the variables of 
+        /// simultaneous equations.
+        /// </param>
+        /// <param name="matrix1D">
+        /// An input List of class List<T>
+        /// which represents the constants of
+        /// simultaneous equations.
+        /// </param>
+        /// <returns>
+        /// A list of solutions
+        /// </returns>
+        /// <example>
+        /// finding the solution of a simultaneous equation
+        /// x + y = 5
+        /// 2x + y = 6
+        /// <code>
+        /// Matrix<double> equation = new Matrix<double>();
+        /// equation.AddRow(new List<double>{1, 1});
+        /// equation.AddRow(new List<double>{2, 1});
+        /// List<double> constantValues = new List<double>{5,6};
+        /// 
+        /// List<double> solution = GaussJordanElimination(equation, constantValues);
+        /// </code>
+        /// </example>
         public static List<double> GaussJordanElimination(
-            Matrix<double> matrix, List<double> matrix1D) //where T:
-             //struct, IComparable, IComparable<T>, IEquatable<T>
+            Matrix<double> matrix, List<double> matrix1D)
         {
             // augmenting the matrices
             Matrix<double> augEqn = MatrixOperationsTwo.ColumnStack1D(matrix, matrix1D);
@@ -134,7 +172,23 @@ namespace MatrixCollection
             return soln;
         }
 
-
+        /// <summary>
+        ///  finds the inverse of a matrix using Gauss Jordan
+        /// Method. The matrix must be a square matrix
+        /// </summary>
+        /// <param name="matrix">a matrix of type Matrix<double></param>
+        /// <returns>
+        /// an inverse matrix of type Matrix<double>
+        /// </returns>
+        /// <example>
+        /// inverse of 1 2
+        ///            3 4
+        /// <code>
+        /// Matrix<double> equation = new Matrix<double>();
+        /// equation.AddRow(new List<double>{1, 2});
+        /// equation.AddRow(new List<double>{3, 4});
+        /// 
+        /// Matrix<double> inverseMatrix = GaussJordanInv(equation);
         public static Matrix<double> GaussJordanInv(Matrix<double> matrix)
         {
             int noRow = matrix.GetRow();

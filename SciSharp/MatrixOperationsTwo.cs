@@ -61,7 +61,31 @@ namespace MatrixCollection
             return result;
         }
 
-
+        /// <summary>
+        /// Performs vertical stacking of a matrix 
+        /// with another matrix. 
+        /// </summary>
+        /// <typeparam name="T">A numeric dataype.</typeparam>
+        /// <param name="matrix">
+        /// The first input matrix of type Matrix.
+        /// </param>
+        /// <param name="matrix2D">
+        /// The second input matrix of type Matrix.
+        /// </param>
+        /// <returns>A new augmented matrix of type Matrix
+        /// .</returns>
+        /// <exception cref="ArgumentException">
+        /// Thrown when the column vector's length does not match 
+        /// the number of rows in the matrix.
+        /// </exception>
+        /// <example>
+        /// Example of stacking a matrix to another matrix:
+        /// <code>
+        /// Matrix<int> firstMatrix = new List<int> { 5, 6 };
+        /// Matrix<int> secondMatrix = new List<int> { 5, 6 };
+        /// Matrix<int> result = MatrixOperationsTwo.ColumnStack(firstMatrix, secondMatrix);
+        /// </code>
+        /// </example>
         public static Matrix<T> ColumnStack2D<T> (
             Matrix<T> matrix, Matrix<T> matrix2D) where T:
              struct, IComparable, IComparable<T>, IEquatable<T>
@@ -139,6 +163,21 @@ namespace MatrixCollection
         /// matrix of the List<T> data type. It is similar to that
         /// of a 2 dimensional matrix
         /// </summary>
+        /// <param name="matrix1D">a matrix of type Matrix</param>
+        /// <param name="scalar">a scalar of type double</param>
+        /// <typeparam name="T">a numeric datatype</typeparam>
+        /// /// <returns>
+        /// A new List with the result and double as 
+        /// the datatype.
+        /// </returns>
+        /// <example>
+        /// Example of multiplying a vector with scalar
+        /// <code>
+        /// double scalar = 3.5;
+        /// List<double> vector = new List<double>{2,3,4};
+        /// Matrix<double> result = MatrixOperationsTwo.ScalarMultiply1D(vector, scalar);
+        /// </code>
+        /// </example>
         public static List<double> ScalarMultiply1D<T>(
             List<T> matrix1D, double scalar) where T:struct,
              IComparable, IComparable<T>, IEquatable<T>
@@ -170,8 +209,15 @@ namespace MatrixCollection
             };
         }
 
-        // Performing operation between List elements 
-        // and summing all the values
+        /// <summary>
+        /// Performing operation between List elements and
+        /// summing all the values
+        /// </summary>
+        /// <param name="matrix1D">first List datatype</param>
+        /// <param name="op">a basic mathematical operator.</param>
+        /// <param name="matrix1D2">second List datatype</param>
+        /// <typeparam name="T">numeric datatype</typeparam>
+        /// <return>a number of double datatype</return>
         public static double sumElement<T>(
             List<T> matrix1D, char op, List<T> matrix1D2) where T:struct,
              IComparable, IComparable<T>, IEquatable<T>
