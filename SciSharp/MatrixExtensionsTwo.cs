@@ -91,8 +91,9 @@ namespace MatrixCollection
                 {
                     List<double> temp1 = L[i, 0, i];
                     List<double> temp2 = U.columnSlice(j, 0, i);
-                    double multiplyElementSum = MatrixOperationsTwo.sumElement(temp1, '*', temp2);
-                    U[i][j] = (augEqn[i][j] - (multiplyElementSum/L[i,i]));
+                    double multiplyElementSum2 = MatrixOperationsTwo.sumElement(temp1, '*', temp2);
+                    U[i][j] = (augEqn[i][j] - (multiplyElementSum2))/L[i,i];
+                    
                 }
             }
             return (L, U, P);
@@ -149,7 +150,7 @@ namespace MatrixCollection
         /// a List of solutions for equatin of type List<double>
         /// </returns>
         public static List<double> backwardSub(
-            Matrix<double>U, List<double>LSubstituted)
+            Matrix<double> U, List<double> LSubstituted)
         {
             int NOrow = U.GetRow();
             double[] solution = new double[NOrow];
@@ -160,7 +161,7 @@ namespace MatrixCollection
                 double Var = 0.0;
                 for(int j=i+1; j<NOrow; j++)
                 {
-                    Var += U[i][j]*solution[j];
+                    Var += U[i, j]*solution[j];
                 }
                 solution[i] = LSubstituted[i] - Var;
             }

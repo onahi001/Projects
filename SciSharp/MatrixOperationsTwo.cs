@@ -225,7 +225,7 @@ namespace MatrixCollection
             double ElementSum = 0;
             for(int i=0; i<matrix1D.Count; i++)
             {
-                ElementSum += (dynamic)Compute((dynamic)matrix1D[i], op,(dynamic)matrix1D2[i]);
+                ElementSum += Convert.ToDouble(matrix1D[i]) * Convert.ToDouble(matrix1D2[i]);
             }
             return ElementSum;
         }

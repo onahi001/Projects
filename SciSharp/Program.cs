@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using MatrixCollection;
 using SystemOfEqnRoot;
+using NewRaphsonMethods;
 
 public class Program
 {
@@ -31,10 +32,10 @@ public class Program
         List<double> startValues2 = new List<double>{1, 2, 0.7, 3, 1.2};
 
        // Carrying out Newton Raphson using Gauss Jordan Method
-       SystemsOfEqn.NewtonRaphsonGauss(startValues2, equations2, 1e-6, 100);
+       NewRaphsonSolver.NSolver(equations2, startValues2, 1e-6, 100);
        Console.WriteLine();
        Console.WriteLine("LU Crout Decomposition Method ");
-       SystemsOfEqn.NewtonRaphsonGauss(startValues2, equations2, 1e-6, 100);
+       NewRaphsonSolver.NSolver(equations2, startValues2, 1e-6, 100,3);
     }
 
     
@@ -79,9 +80,9 @@ public class Program
         List<double> startValues3 = new List<double>{2, 1, 0.5, 0.2, 0.1, 0.1, 350};
 
         // Carrying out Newton Raphson using Gauss Jordan Method
-       SystemsOfEqn.NewtonRaphsonGauss(startValues3, equations3, 1e-6, 100);
-       Console.WriteLine("LU ");
+        NewRaphsonSolver.NSolver(equations3, startValues3, 1e-6, 100);
        Console.WriteLine();
-       SystemsOfEqn.NewtonRaphsonGauss(startValues3, equations3, 1e-6, 100);
+       Console.WriteLine("LU Crout Decomposition Method ");
+       NewRaphsonSolver.NSolver(equations3, startValues3, 1e-6, 100,2);
     }
 }

@@ -54,6 +54,19 @@ namespace SystemOfEqnRoot
             return start;
         }
 
+        // Access number of rows
+        public int Count()
+        {
+            return this.equations.Count;
+        }
+
+        // indexing through equations
+        public SystemsOfEqn.Function this[int index]
+        {
+            get => this.equations[index];
+            set => this.equations[index] = value;
+        }
+
 
         // Evaluating Functions
         public List<double> Evaluate(List<double> values)
@@ -68,184 +81,6 @@ namespace SystemOfEqnRoot
                 results.Add(eq(values));
             }
             return results;
-        }
-
-        
-        
-        // Defining the Jacobian Class
-        /// <summary>
-        /// calculates the jacobian of a matrix
-        /// </summary>
-        /// <param name="h">pertubation value</param>
-        /// <returns>
-        /// returns a jacobian matrix and solution of the 
-        /// equations substituting the starting values
-        /// </returns>
-        public (Matrix<double>, List<double>) Jacobi(double h=1e-6)
-        {
-            Matrix<double> jacobiMat = new Matrix<double>();
-            List<double> funcMat = Evaluate(start);
-
-
-            for(int e=0; e<equations.Count;  e++)
-            {
-                Function fun = equations[e];
-                List<double> partialDerivative = 
-                    new List<double>();
-               
-                for(int i=0; i<equations.Count; i++)
-                {
-                    // duplicating the starting value for pertubation
-                    List<double> perturbedPoint = [..start];
-                    perturbedPoint[i] += h;
-                    double partial_dx = (
-                        fun(perturbedPoint) -
-                            funcMat[e]) / h;
-                    partialDerivative.Add(partial_dx);
-                }
-                jacobiMat.AddRow(partialDerivative);
-            }
-
-            for(int i=0; i<funcMat.Count; i++)
-            {
-                funcMat[i] = funcMat[i]*-1;
-            }
-
-            return (jacobiMat, funcMat);
-        }
-
-        /// <summary>
-        /// Calculates the roots of a systems of equations
-        /// using Gauss-Jordan Elimination method.
-        /// prints the solution of the system of Non-Linear
-        /// equations to the console
-        /// </summary>
-        /// <param name="start">List of starting values</param>
-        /// <param name="equations">List of Equations of type Function</param>
-        /// <param name="tol">tolerance for the absolute error</param>
-        /// <param name="maxIter">maximum iterations</param>
-        /// <typeparam name="Function">
-        /// a delegate that represents equations
-        /// </typeparam>
-        /// <example>
-        /// <code>
-        /// List<SystemsOfEqn.Function>equationList = new List<SystemsOfEqn.Function>
-        /// {
-        ///    x=> x[0]*x[0] + x[1]*x[1]
-        ///    x=> x[0] + x[1]
-        /// }
-        /// List<double> startValues = new List<double>{1,2}
-        /// 
-        /// NewtonRaphsonGauss(startValues, equations, 1e-3, 10)
-        /// </code>
-        /// </example>
-        public static void NewtonRaphsonGauss(List<double> start,
-         List<Function> equations, double tol=1e-6, double maxIter=5)
-        {
-            //Executing the Newton Raphson
-            int count =1;
-            while (count<maxIter)
-            {
-                SystemsOfEqn Eqns = new SystemsOfEqn(start, equations);
-                (Matrix<double>EqnJab, List<double>ConstMat)  = Eqns.Jacobi();
-                List<double> soln = MatrixExtensions.GaussJordanElimination(EqnJab, ConstMat);
-
-                List<double> values = new List<double>();
-                List<double> errorList = new List<double>();
-                for(int i=0; i<soln.Count; i++)
-                {
-                    double xValues  = start[i] + soln[i];
-                    values.Add(xValues);
-                    double error = Math.Abs((xValues-start[i])/start[i]);
-                    errorList.Add(error);
-                }
-
-                if (errorList.Sum() < tol) 
-                {
-                    MatrixOperations.PrintList(values);
-                    Console.WriteLine($"Number of iterations = {count}");
-                    break;
-                }
-                else
-                {
-                    if (count == maxIter)
-                    {
-                        Console.WriteLine($"Newton Raphson unsuccessful at Max Iteration");
-                        MatrixOperations.PrintList(values);
-                    }
-                    start = new List<double>(values);
-                    count +=1;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Calculates the roots of a systems of equations
-        /// using Crout LU decomposition method.
-        /// prints the solution of the system of Non-Linear
-        /// equations to the console
-        /// </summary>
-        /// <param name="start">List of starting values</param>
-        /// <param name="equations">List of Equations of type Function</param>
-        /// <param name="tol">tolerance for the absolute error</param>
-        /// <param name="maxIter">maximum iterations</param>
-        /// <typeparam name="Function">
-        /// a delegate that represents equations
-        /// </typeparam>
-        /// <example>
-        /// <code>
-        /// List<SystemsOfEqn.Function>equationList = new List<SystemsOfEqn.Function>
-        /// {
-        ///    x=> x[0]*x[0] + x[1]*x[1]
-        ///    x=> x[0] + x[1]
-        /// }
-        /// List<double> startValues = new List<double>{1,2}
-        /// 
-        /// NewtonRaphsonLU(startValues, equations, 1e-3, 10)
-        /// </code>
-        /// </example>
-        public static void NewtonRaphsonLU(List<double> start,
-         List<Function> equations, double tol=1e-6, double maxIter=5)
-        {
-            //Executing the Newton Raphson
-            int count =1;
-            while (count<maxIter)
-            {
-                SystemsOfEqn Eqns = new SystemsOfEqn(start, equations);
-                (Matrix<double>EqnJab, List<double>ConstMat)  = Eqns.Jacobi();
-                Matrix<double> EqnJabInv = MatrixExtensionsTwo.LUMatrixInv(EqnJab);
-                List<double> DeltaVar = EqnJabInv.DotProduct1D(ConstMat);
-
-                List<double> values = new List<double>();
-                List<double> errorList = new List<double>();
-
-                for(int i=0; i<DeltaVar.Count; i++)
-                {
-                    //Console.WriteLine(DeltaVar[i]);
-                    double xValues = start[i] + DeltaVar[i];
-                    //Console.WriteLine(xValues);
-                    values.Add(xValues);
-                    double error = Math.Abs((xValues-start[i])/start[i]);
-                    errorList.Add(error);
-                }
-                //MatrixOperations.PrintList(values);
-                if (errorList.Sum() < tol) 
-                {
-                    MatrixOperations.PrintList(values);
-                    Console.WriteLine($"Numer of iterations = {count}");
-                    break;
-                }
-                else
-                {
-                    if (count == maxIter)
-                    {
-                        Console.WriteLine($"Newton Raphson unsuccessful at Max Iteration");
-                        MatrixOperations.PrintList(values);
-                    }
-                    start = new List<double>(values);
-                    count +=1;
-                }
-            }
         }
     }
 }
